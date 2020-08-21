@@ -22,23 +22,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libhdf5-dev \
         libpng-dev \
         libzmq3-dev \
+        gfortran \
+        libatlas-base-dev \
+        libopenblas-dev \
+        liblapack-dev \
         pkg-config \
         python3-dev \
         python3-numpy \
         python3-scipy \
-        python3-sklearn \
+        python3-pip \
         rsync \
         unzip
 
 RUN  apt-get clean && \
         rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
-    python get-pip.py && \
-        rm get-pip.py
+# RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
+#     python get-pip.py && \
+#         rm get-pip.py
 
 # install dependencies
-RUN pip install --no-cache-dir --upgrade pip
+RUN pip3 install --no-cache-dir --upgrade pip
+RUN pip3 install scikit-learn --index-url https://piwheels.org/simple
 
 # set work directory
 WORKDIR /src/app
@@ -47,7 +52,7 @@ WORKDIR /src/app
 COPY ./requirements.txt /src/app/requirements.txt
 
 # install project requirements
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # copy project
 COPY . .
