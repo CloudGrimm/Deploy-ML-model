@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mlmodel-deployment
+  name: mlmodel-deployment80
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mlmodel
+      app: mlmodel80
   template:
     metadata:
       labels:
-        app: mlmodel
+        app: mlmodel80
     spec:
       containers:
       - name: mlmodel-docker
-        image: wilbrodchipomho/postgrad-msc:200
+        image: wilbrodchipomho/postgrad-msc:80
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "25m"
         ports:
-        - containerPort: 8080
+        - containerPort: 80

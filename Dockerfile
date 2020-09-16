@@ -65,7 +65,7 @@ RUN python model.py
 WORKDIR /src/app
 
 # set app port
-EXPOSE 8080
+EXPOSE 80
 
 ENTRYPOINT [ "python" ] 
 

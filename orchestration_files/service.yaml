@@ -1,10 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mlmodel-service
+  name: mlmodel-service80
 spec:
   selector:
-    app: mlmodel
+    app: mlmodel80
+  type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: 8080
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    name: 80-80
